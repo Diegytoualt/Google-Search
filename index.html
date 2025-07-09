@@ -3,13 +3,50 @@
 
 <head>
     <title>Google Search</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
 
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #TextBox {
+            width: 500px;
+            height: 35px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        #SubmitButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        #IFeelLuckyButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <form action="https://google.com/search">
-        <input type="text" name="q">
-        <input type="submit" value="Google Search">
+    <form action="https://google.com/search" method="get">
+        <input type="text" id="TextBox" name="q" placeholder="Search Google">
+        <input type="submit" id="SubmitButton" value="Google Search">
+        <input type="submit" id="IFeelLuckyButton" value="I'm Feeling Lucky" name="btnI">
+        <input type="hidden" name="hl" value="en">
     </form>
 </body>
 
