@@ -11,6 +11,12 @@
             align-items: center;
             height: 70vh;
             margin: 0;
+            background-color: #ffffff;
+            /* Default light mode background */
+            color: #000000;
+            /* Default light mode text color */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition */
         }
 
         h1 {
@@ -36,12 +42,10 @@
             border-radius: 50px;
             border: 0.5px solid #ccc;
             transition: border-color 0.1s ease;
-            /* Smooth transition for border color */
         }
 
         #TextBox:hover {
             border-color: #333;
-            /* Changes border color on hover */
         }
 
         .button-container {
@@ -64,13 +68,11 @@
             border: 0.5px solid #ccc;
             background-color: #f8f8f8;
             transition: border-color 0.1s ease;
-            /* Smooth transition for border color */
         }
 
         #SubmitButton:hover,
         #IFeelLuckyButton:hover {
             border-color: #333;
-            /* Changes border color on hover */
         }
 
         #BottomBox {
@@ -85,6 +87,23 @@
             font-size: 14px;
             color: #333;
             border-top: 0.5px solid #ccc;
+        }
+
+        #ToggleModeButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #ToggleModeButton:hover {
+            background-color: #e0e0e0;
         }
     </style>
 </head>
@@ -101,6 +120,9 @@
         </div>
         <input type="hidden" name="hl" value="en">
     </form>
+
+    <!-- Button to toggle light/dark mode -->
+    <button id="ToggleModeButton">Dark Mode :D</button>
 
     <!-- Box at the bottom of the screen displaying random text -->
     <div id="BottomBox"></div>
@@ -138,6 +160,38 @@
 
         // Display the random text in the #BottomBox element
         document.getElementById("BottomBox").textContent = randomText;
+
+        // Load saved mode from localStorage
+        const savedMode = localStorage.getItem("mode");
+        const body = document.body;
+        const toggleModeButton = document.getElementById("ToggleModeButton");
+
+        if (savedMode === "dark") {
+            body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+            body.style.color = "#ffffff"; // Dark mode text color
+            toggleModeButton.textContent = "FlashBang >:)";
+        } else {
+            body.style.backgroundColor = "#ffffff"; // Light mode background
+            body.style.color = "#000000"; // Light mode text color
+            toggleModeButton.textContent = "Dark Mode :D";
+        }
+
+        // Toggle light/dark mode and save preference
+        toggleModeButton.addEventListener("click", () => {
+            const currentMode = localStorage.getItem("mode"); // Get the current mode from localStorage
+
+            if (currentMode === "dark") {
+                body.style.backgroundColor = "#ffffff"; // Light mode background
+                body.style.color = "#000000"; // Light mode text color
+                toggleModeButton.textContent = "Dark Mode :D";
+                localStorage.setItem("mode", "light"); // Save light mode preference
+            } else {
+                body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+                body.style.color = "#ffffff"; // Dark mode text color
+                toggleModeButton.textContent = "FlashBang >:)";
+                localStorage.setItem("mode", "dark"); // Save dark mode preference
+            }
+        });
     </script>
 </body>
 
