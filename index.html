@@ -13,11 +13,12 @@
             margin: 0;
         }
 
-        header {
+        h1 {
             text-align: center;
-            margin-bottom: -20px;
-            font-size: 40px;
+            margin-bottom: 20px;
+            font-size: 80px;
             font-family: Arial, sans-serif;
+            font-weight: 400;
         }
 
         form {
@@ -27,12 +28,12 @@
         }
 
         #TextBox {
-            width: 500px;
-            height: 35px;
+            width: 550px;
+            height: 25px;
             padding: 10px;
             font-size: 16px;
             margin-bottom: 10px;
-            border-radius: 30px;
+            border-radius: 50px;
             border: 1px solid #ccc;
         }
 
@@ -45,12 +46,25 @@
         #SubmitButton,
         #IFeelLuckyButton {
             padding: 5px 10px;
+            text-align: center;
             font-size: 14px;
-            width: 140px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            width: 125px;
             height: 35px;
             cursor: pointer;
             border-radius: 5px;
-            border: 1px solid #ccc;
+            border: 0.5px solid #ccc;
+            background-color: #f8f8f8;
+
+        }
+
+        #RandomText {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #333;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
         }
     </style>
 </head>
@@ -67,6 +81,27 @@
         </div>
         <input type="hidden" name="hl" value="en">
     </form>
+    <div id="RandomText"></div>
+
+    <script>
+        // Library of random text
+        const randomTexts = [
+            "Hello world!!!",
+            "Did you know? The Eiffel Tower can be 15 cm taller during the summer.",
+            "Random fact: Honey never spoils.",
+            "Welcome to Google Search!",
+            "Fun fact: Bananas are berries, but strawberries aren't.",
+            "Hello there! Have a great day!",
+            "Did you know? Octopuses have three hearts.",
+            ":)"
+        ];
+
+        // Select a random text
+        const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
+
+        // Display the random text in the #RandomText element
+        document.getElementById("RandomText").textContent = randomText;
+    </script>
 </body>
 
 </html>
