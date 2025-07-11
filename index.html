@@ -34,7 +34,14 @@
             font-size: 16px;
             margin-bottom: 10px;
             border-radius: 50px;
-            border: 1px solid #ccc;
+            border: 0.5px solid #ccc;
+            transition: border-color 0.1s ease;
+            /* Smooth transition for border color */
+        }
+
+        #TextBox:hover {
+            border-color: #333;
+            /* Changes border color on hover */
         }
 
         .button-container {
@@ -56,15 +63,28 @@
             border-radius: 5px;
             border: 0.5px solid #ccc;
             background-color: #f8f8f8;
-
+            transition: border-color 0.1s ease;
+            /* Smooth transition for border color */
         }
 
-        #RandomText {
-            margin-top: 30px;
+        #SubmitButton:hover,
+        #IFeelLuckyButton:hover {
+            border-color: #333;
+            /* Changes border color on hover */
+        }
+
+        #BottomBox {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #f1f1f1;
+            text-align: center;
+            line-height: 50px;
+            font-family: Arial, sans-serif;
             font-size: 14px;
             color: #333;
-            font-family: Arial, sans-serif;
-            font-weight: 400;
+            border-top: 0.5px solid #ccc;
         }
     </style>
 </head>
@@ -81,26 +101,43 @@
         </div>
         <input type="hidden" name="hl" value="en">
     </form>
-    <div id="RandomText"></div>
+
+    <!-- Box at the bottom of the screen displaying random text -->
+    <div id="BottomBox"></div>
 
     <script>
         // Library of random text
         const randomTexts = [
             "Hello world!!!",
-            "Did you know? The Eiffel Tower can be 15 cm taller during the summer.",
-            "Random fact: Honey never spoils.",
+            "Did you know? The Eiffel Tower can be 15 cm taller during the summer, due to the thermal expansion of the metal.",
+            "Random fact: Honey never spoils, I bet you didn't know that!",
             "Welcome to Google Search!",
-            "Fun fact: Bananas are berries, but strawberries aren't.",
-            "Hello there! Have a great day!",
-            "Did you know? Octopuses have three hearts.",
-            ":)"
+            "Fun fact: Bananas are berries, but strawberries aren't. It just doesn't make sense... :(",
+            "Did you know? Octopuses have three hearts, thats why they are so loving!",
+            ":)",
+            "I am a very smart box!",
+            "I give you useless information ;)",
+            "I am allknowing, I know everything!",
+            "Did you know? I am a box that displays random text.",
+            "I am ranked #1 in useless information!",
+            "I am the best box in the world!",
+            "I am the smartest box in the world!",
+            "Sir box, at your service!",
+            "I think therefore I am... a box!",
+            "cool search engine, right?",
+            "Search up 'Google' on Google, it works!",
+            "Search up Box Image you might find me ;)",
+            "How can I get out the matrix?",
+            "I have been around for like idk 10 seconds",
+            "Refresh the page for some cool new text! TRUST :)",
+            "Shhh... This is a secret message, don't tell anyone!!! Ill know if you do >:/"
         ];
 
         // Select a random text
         const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
 
-        // Display the random text in the #RandomText element
-        document.getElementById("RandomText").textContent = randomText;
+        // Display the random text in the #BottomBox element
+        document.getElementById("BottomBox").textContent = randomText;
     </script>
 </body>
 
