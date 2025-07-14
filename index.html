@@ -12,11 +12,8 @@
             height: 70vh;
             margin: 0;
             background-color: #ffffff;
-            /* Default light mode background */
             color: #000000;
-            /* Default light mode text color */
             transition: background-color 0.3s ease, color 0.3s ease;
-            /* Smooth transition */
         }
 
         h1 {
@@ -105,6 +102,28 @@
         #ToggleModeButton:hover {
             background-color: #302e2e;
         }
+
+        #ImageSearchButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            text-decoration: none;
+            color: #000;
+            font-family: Arial, Helvetica, sans-serif;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #ImageSearchButton:hover {
+            background-color: #302e2e;
+            color: #fff;
+            font-family: Arial, Helvetica, sans-serif;
+        }
     </style>
 </head>
 
@@ -123,6 +142,9 @@
 
     <!-- Button to toggle light/dark mode -->
     <button id="ToggleModeButton">Dark Mode :D</button>
+
+    <!-- Button to redirect to Image.html -->
+    <a id="ImageSearchButton" href="Image.html">Image Search</a>
 
     <!-- Box at the bottom of the screen displaying random text -->
     <div id="BottomBox"></div>
