@@ -103,7 +103,7 @@
         }
 
         #ToggleModeButton:hover {
-            background-color: #e0e0e0;
+            background-color: #302e2e;
         }
     </style>
 </head>
@@ -135,24 +135,24 @@
             "Random fact: Honey never spoils, I bet you didn't know that!",
             "Welcome to Google Search!",
             "Fun fact: Bananas are berries, but strawberries aren't. It just doesn't make sense... :(",
-            "Did you know? Octopuses have three hearts, thats why they are so loving!",
+            "Did you know? Octopuses have three hearts, that's why they are so loving!",
             ":)",
             "I am a very smart box!",
             "I give you useless information ;)",
-            "I am allknowing, I know everything!",
+            "I am all-knowing, I know everything!",
             "Did you know? I am a box that displays random text.",
             "I am ranked #1 in useless information!",
             "I am the best box in the world!",
             "I am the smartest box in the world!",
             "Sir box, at your service!",
             "I think therefore I am... a box!",
-            "cool search engine, right?",
+            "Cool search engine, right?",
             "Search up 'Google' on Google, it works!",
             "Search up Box Image you might find me ;)",
-            "How can I get out the matrix?",
+            "How can I get out of the matrix?",
             "I have been around for like idk 10 seconds",
             "Refresh the page for some cool new text! TRUST :)",
-            "Shhh... This is a secret message, don't tell anyone!!! Ill know if you do >:/"
+            "Shhh... This is a secret message, don't tell anyone!!! I'll know if you do >:/"
         ];
 
         // Select a random text
@@ -165,15 +165,40 @@
         const savedMode = localStorage.getItem("mode");
         const body = document.body;
         const toggleModeButton = document.getElementById("ToggleModeButton");
+        const submitButton = document.getElementById("SubmitButton");
+        const iFeelLuckyButton = document.getElementById("IFeelLuckyButton");
 
+        // Apply the saved mode
         if (savedMode === "dark") {
+            body.classList.add("dark-mode");
             body.style.backgroundColor = "#1c1b1b"; // Dark mode background
             body.style.color = "#ffffff"; // Dark mode text color
             toggleModeButton.textContent = "FlashBang >:)";
+            submitButton.style.backgroundColor = "#333"; // Dark mode button background color
+            submitButton.style.color = "#ffffff"; // Dark mode button text color
+            iFeelLuckyButton.style.backgroundColor = "#333"; // Dark mode button background color
+            iFeelLuckyButton.style.color = "#ffffff"; // Dark mode button text color
+            TextBox.style.backgroundColor = "#333"; // Dark mode input background color
+            TextBox.style.color = "#ffffff"; // Dark mode input text color
+            TextBox.style.borderColor = "#555"; // Dark mode input border color
+            TextBox.style.placeholderColor = "#aaa"; // Dark mode input placeholder color
+            BottomBox.style.backgroundColor = "#302e2e"; // Dark mode bottom box background
+            BottomBox.style.color = "#ffffff"; // Dark mode bottom box text color
         } else {
+            body.classList.add("light-mode");
             body.style.backgroundColor = "#ffffff"; // Light mode background
             body.style.color = "#000000"; // Light mode text color
             toggleModeButton.textContent = "Dark Mode :D";
+            submitButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+            submitButton.style.color = "#000000"; // Light mode button text color
+            iFeelLuckyButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+            iFeelLuckyButton.style.color = "#000000"; // Light mode button text color
+            TextBox.style.backgroundColor = "#f8f8f8"; // Light mode input background color
+            TextBox.style.color = "#000000"; // Light mode input text color
+            TextBox.style.borderColor = "#ccc"; // Light mode input border color
+            TextBox.style.placeholderColor = "#aaa"; // Light mode input placeholder color
+            BottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background
+            BottomBox.style.color = "#333"; // Light mode bottom box text color
         }
 
         // Toggle light/dark mode and save preference
@@ -181,15 +206,41 @@
             const currentMode = localStorage.getItem("mode"); // Get the current mode from localStorage
 
             if (currentMode === "dark") {
+                // Switch to light mode
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
                 body.style.backgroundColor = "#ffffff"; // Light mode background
                 body.style.color = "#000000"; // Light mode text color
                 toggleModeButton.textContent = "Dark Mode :D";
+                submitButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+                submitButton.style.color = "#000000"; // Light mode button text color
+                iFeelLuckyButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+                iFeelLuckyButton.style.color = "#000000"; // Light mode button text color
                 localStorage.setItem("mode", "light"); // Save light mode preference
+                TextBox.style.backgroundColor = "#f8f8f8"; // Light mode input background color
+                TextBox.style.color = "#000000"; // Light mode input text color
+                TextBox.style.borderColor = "#ccc"; // Light mode input border color
+                TextBox.style.placeholderColor = "#aaa"; // Light mode input placeholder color
+                BottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background
+                BottomBox.style.color = "#333"; // Light mode bottom box text color
             } else {
+                // Switch to dark mode
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
                 body.style.backgroundColor = "#1c1b1b"; // Dark mode background
                 body.style.color = "#ffffff"; // Dark mode text color
                 toggleModeButton.textContent = "FlashBang >:)";
+                submitButton.style.backgroundColor = "#333"; // Dark mode button background color
+                submitButton.style.color = "#ffffff"; // Dark mode button text color
+                iFeelLuckyButton.style.backgroundColor = "#333"; // Dark mode button background color
+                iFeelLuckyButton.style.color = "#ffffff"; // Dark mode button text color
                 localStorage.setItem("mode", "dark"); // Save dark mode preference
+                TextBox.style.backgroundColor = "#333"; // Dark mode input background color
+                TextBox.style.color = "#ffffff"; // Dark mode input text color
+                TextBox.style.borderColor = "#555"; // Dark mode input border color
+                TextBox.style.placeholderColor = "#aaa"; // Dark mode input placeholder color
+                BottomBox.style.backgroundColor = "#302e2e"; // Dark mode bottom box background
+                BottomBox.style.color = "#ffffff"; // Dark mode bottom box text color
             }
         });
     </script>
