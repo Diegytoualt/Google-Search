@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Image Search</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 70vh;
+            margin: 0;
+            background-color: #ffffff;
+            /* Default light mode background */
+            color: #000000;
+            /* Default light mode text color */
+            transition: background-color 0.3s ease, color 0.3s ease;
+            /* Smooth transition */
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 80px;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #TextBox {
+            width: 550px;
+            height: 25px;
+            padding: 10px;
+            font-size: 16px;
+            margin-bottom: 10px;
+            border-radius: 50px;
+            border: 0.5px solid #ccc;
+            transition: border-color 0.1s ease;
+        }
+
+        #TextBox:hover {
+            border-color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        #SubmitButton {
+            padding: 5px 10px;
+            text-align: center;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            width: 125px;
+            height: 35px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 0.5px solid #ccc;
+            background-color: #f8f8f8;
+            transition: border-color 0.1s ease;
+        }
+
+        #SubmitButton:hover {
+            border-color: #333;
+        }
+
+        #BottomBox {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #f1f1f1;
+            text-align: center;
+            line-height: 50px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            border-top: 0.5px solid #ccc;
+        }
+
+        #ToggleModeButton {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #ToggleModeButton:hover {
+            background-color: #302e2e;
+        }
+
+        h6 {
+            text-align: center;
+            font-size: 20px;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            margin-top: -25px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Google</h1>
+        <h6>Image Search</h6>
+    </header>
+    <form action="https://www.google.com/search" method="get">
+        <input type="text" id="TextBox" name="q" placeholder="Search for images">
+        <input type="hidden" name="tbm" value="isch"> <!-- Enables image search -->
+        <div class="button-container">
+            <input type="submit" id="SubmitButton" value="Search Images">
+        </div>
+        <input type="hidden" name="hl" value="en">
+    </form>
+
+    <!-- Button to toggle light/dark mode -->
+    <button id="ToggleModeButton">Dark Mode :D</button>
+
+    <!-- Box at the bottom of the screen displaying random text -->
+    <div id="BottomBox"></div>
+
+    <script>
+        // Library of random text
+        const randomTexts = [
+            "Looking for amazing images?",
+            "Did you know? Google Images was launched in 2001.",
+            "Fun fact: You can search for images by uploading them!",
+            "Welcome to Google Image Search!",
+            "Find the perfect image for your project!",
+            "Search up 'beautiful landscapes' for stunning views!",
+            "Did you know? You can reverse image search on Google.",
+            "Explore the world through images!",
+            "Search up 'cute animals' for a smile!",
+            "Images speak louder than words!",
+            "Ever tried to search for box? You might find me :)"
+        ];
+
+        // Select a random text
+        const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
+
+        // Display the random text in the #BottomBox element
+        document.getElementById("BottomBox").textContent = randomText;
+
+        // Load saved mode from localStorage
+        const savedMode = localStorage.getItem("mode");
+        const body = document.body;
+        const toggleModeButton = document.getElementById("ToggleModeButton");
+        const submitButton = document.getElementById("SubmitButton");
+        const textBox = document.getElementById("TextBox");
+        const bottomBox = document.getElementById("BottomBox");
+
+        // Apply the saved mode
+        if (savedMode === "dark") {
+            body.classList.add("dark-mode");
+            body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+            body.style.color = "#ffffff"; // Dark mode text color
+            toggleModeButton.textContent = "FlashBang >:)";
+            submitButton.style.backgroundColor = "#333"; // Dark mode button background color
+            submitButton.style.color = "#ffffff"; // Dark mode button text color
+            textBox.style.backgroundColor = "#333"; // Dark mode text box background color
+            textBox.style.color = "#ffffff"; // Dark mode text box text color
+            bottomBox.style.backgroundColor = "#1c1b1b"; // Dark mode bottom box background color
+            bottomBox.style.color = "#ffffff"; // Dark mode bottom box text color
+        } else {
+            body.classList.add("light-mode");
+            body.style.backgroundColor = "#ffffff"; // Light mode background
+            body.style.color = "#000000"; // Light mode text color
+            toggleModeButton.textContent = "Dark Mode :D";
+            submitButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+            submitButton.style.color = "#000000"; // Light mode button text color
+            textBox.style.backgroundColor = "#ffffff"; // Light mode text box background color
+            textBox.style.color = "#000000"; // Light mode text box text color
+            bottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background color
+            bottomBox.style.color = "#333"; // Light mode bottom box text color
+        }
+
+        // Toggle light/dark mode and save preference
+        toggleModeButton.addEventListener("click", () => {
+            const currentMode = localStorage.getItem("mode"); // Get the current mode from localStorage
+
+            if (currentMode === "dark") {
+                // Switch to light mode
+                body.classList.remove("dark-mode");
+                body.classList.add("light-mode");
+                body.style.backgroundColor = "#ffffff"; // Light mode background
+                body.style.color = "#000000"; // Light mode text color
+                toggleModeButton.textContent = "Dark Mode :D";
+                submitButton.style.backgroundColor = "#f8f8f8"; // Light mode button background color
+                submitButton.style.color = "#000000"; // Light mode button text color
+                textBox.style.backgroundColor = "#ffffff"; // Light mode text box background color
+                textBox.style.color = "#000000"; // Light mode text box text color
+                localStorage.setItem("mode", "light"); // Save light mode preference
+                bottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background color
+                bottomBox.style.color = "#333"; // Light mode bottom box text color
+            } else {
+                // Switch to dark mode
+                body.classList.remove("light-mode");
+                body.classList.add("dark-mode");
+                body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+                body.style.color = "#ffffff"; // Dark mode text color
+                toggleModeButton.textContent = "FlashBang >:)";
+                submitButton.style.backgroundColor = "#333"; // Dark mode button background color
+                submitButton.style.color = "#ffffff"; // Dark mode button text color
+                textBox.style.backgroundColor = "#333"; // Dark mode text box background color
+                textBox.style.color = "#ffffff"; // Dark mode text box text color
+                localStorage.setItem("mode", "dark"); // Save dark mode preference
+                bottomBox.style.backgroundColor = "#1c1b1b"; // Dark mode bottom box background color
+                bottomBox.style.color = "#ffffff"; // Dark mode bottom box text color
+            }
+        });
+    </script>
+</body>
+
+</html>
