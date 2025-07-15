@@ -103,7 +103,8 @@
             background-color: #302e2e;
         }
 
-        #ImageSearchButton {
+        #ImageSearchButton,
+        #AdvancedSearchButton {
             position: absolute;
             top: 10px;
             right: 10px;
@@ -119,10 +120,20 @@
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        #ImageSearchButton:hover {
+        #ImageSearchButton:hover,
+        #AdvancedSearchButton:hover {
             background-color: #302e2e;
             color: #fff;
-            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #ImageSearchButton {
+            right: 180px;
+            /* Adjusted position for spacing */
+        }
+
+        #AdvancedSearchButton {
+            right: 10px;
+            /* Positioned next to Image Search */
         }
     </style>
 </head>
@@ -145,6 +156,9 @@
 
     <!-- Button to redirect to Image.html -->
     <a id="ImageSearchButton" href="Image.html">Image Search</a>
+
+    <!-- Button to redirect to advanced search page -->
+    <a id="AdvancedSearchButton" href="advanced.html">Advanced Search</a>
 
     <!-- Box at the bottom of the screen displaying random text -->
     <div id="BottomBox"></div>
