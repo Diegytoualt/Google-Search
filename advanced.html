@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Google Advanced Search</title>
+    <style>
+        body {
+            margin: 0;
+            background-color: #ffffff;
+            color: #000000;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            height: 70vh;
+            padding-left: 40px;
+        }
+
+        h1 {
+            text-align: left;
+            margin-bottom: 15px;
+            font-size: 40px;
+            font-family: Arial, sans-serif;
+            font-weight: 400;
+            color: #ff6666;
+            /* Light red color */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .advanced-input {
+            width: 550px;
+            height: 20px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #777777;
+            background-color: transparent;
+            transition: border-color 0.1s ease, color 0.3s ease;
+        }
+
+        .advanced-input:focus {
+            border-color: rgb(70, 111, 243);
+            outline: none;
+        }
+
+        .advanced-input::placeholder {
+            color: #777;
+            /* Default placeholder color */
+            transition: color 0.3s ease;
+        }
+
+        .help-message {
+            font-size: 14px;
+            color: #555;
+            font-family: Arial, sans-serif;
+            transition: color 0.3s ease;
+        }
+
+        .button-container {
+            display: flex;
+            margin-top: 20px;
+            gap: 20px;
+        }
+
+        #SubmitButton {
+            padding: 5px 10px;
+            text-align: center;
+            font-size: 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: 400;
+            width: 130px;
+            height: 35px;
+            cursor: pointer;
+            border: none;
+            border-radius: 2px;
+            background-color: #007BFF;
+            color: #ffffff;
+            transition: background-color 0.3s ease;
+        }
+
+        #SubmitButton:hover {
+            background-color: #0056b3;
+        }
+
+        #BottomBox {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 50px;
+            background-color: #f1f1f1;
+            text-align: center;
+            line-height: 50px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            color: #333;
+            border-top: 0.5px solid #ccc;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #ToggleModeButton {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            border: 1px solid #ccc;
+            background-color: #f8f8f8;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #ToggleModeButton:hover {
+            background-color: #302e2e;
+        }
+
+        /* Placeholder color for dark mode */
+        .dark-mode .advanced-input::placeholder {
+            color: #ffffff;
+        }
+
+        /* Placeholder color for light mode */
+        .light-mode .advanced-input::placeholder {
+            color: #777;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content-container">
+        <header>
+            <h1>Advanced Search</h1>
+        </header>
+        <form action="https://www.google.com/search" method="get">
+            <!-- Advanced search options -->
+            <div class="input-group">
+                <input type="text" class="advanced-input" name="q" placeholder="Find pages with all these words">
+                <span class="help-message">Type important words: water ocean sea</span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="advanced-input" name="as_epq"
+                    placeholder="Find pages with this exact word or phrase">
+                <span class="help-message">Type exact phrase: "blue ocean"</span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="advanced-input" name="as_oq" placeholder="Find pages with any of these words">
+                <span class="help-message">Type any words: beach sand waves</span>
+            </div>
+            <div class="input-group">
+                <input type="text" class="advanced-input" name="as_eq"
+                    placeholder="Find pages with none of these words">
+                <span class="help-message">Exclude words: desert dry</span>
+            </div>
+
+            <div class="button-container">
+                <input type="submit" id="SubmitButton" value="Advanced Search">
+            </div>
+            <input type="hidden" name="hl" value="en">
+        </form>
+
+        <!-- Button to toggle light/dark mode -->
+        <button id="ToggleModeButton">Dark Mode :D</button>
+    </div>
+
+    <!-- Box at the bottom of the screen displaying random text -->
+    <div id="BottomBox"></div>
+
+    <script>
+        // Library of random text
+        const randomTexts = [
+            "Hello world!!!",
+            "So you are looking for something?",
+            "Wow, this is some advanced stuff right here :O",
+            "Can't find something I see hmm...",
+            "What are you looking for?",
+            "I hope you find what you are looking for :)",
+            "This is an advanced search page",
+            "I hope you don't find what you are looking for >:)",
+            "Are you sure you want to search for that?",
+            "I'm more advanced, I can feel it :D",
+            "I can feel your search intentions",
+            "I may be programmed, but I can ... okay I just rebooted and forgot what I was saying :(",
+            "I am not a robot, I am an advanced search page",
+            "I am the most advanced and coolest box out of the 3",
+            "There are 3 boxes of wisdom, I am the most advanced one",
+            "Don't be fooled, this advanced search is too complicated for it to be useful",
+            "This may be an advanced search, but you still won't be able to find me >:)",
+            "No, these messages are not auto-generated. We are not in the future... just yet",
+            "Is it possible to find this same page on the internet? Will you accept the challenge?",
+            "Side Quest: Go outside and touch some grass :D"
+        ];
+
+        // Select a random text
+        const randomText = randomTexts[Math.floor(Math.random() * randomTexts.length)];
+
+        // Display the random text in the #BottomBox element
+        document.getElementById("BottomBox").textContent = randomText;
+
+        // Load saved mode from localStorage
+        const savedMode = localStorage.getItem("mode");
+        const body = document.body;
+        const toggleModeButton = document.getElementById("ToggleModeButton");
+        const advancedInputs = document.querySelectorAll(".advanced-input");
+        const helpMessages = document.querySelectorAll(".help-message");
+        const bottomBox = document.getElementById("BottomBox");
+
+        // Apply the saved mode
+        if (savedMode === "dark") {
+            body.classList.add("dark-mode");
+            body.classList.remove("light-mode");
+            body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+            body.style.color = "#ffffff"; // Dark mode text color
+            toggleModeButton.textContent = "FlashBang >:)";
+            advancedInputs.forEach(input => {
+                input.style.color = "#ffffff"; // Text inside text boxes
+            });
+            helpMessages.forEach(message => {
+                message.style.color = "#ffffff"; // Help text
+            });
+            bottomBox.style.backgroundColor = "#2a2a2a"; // Slightly lighter than background
+            bottomBox.style.color = "#ffffff"; // Bottom box text color
+        } else {
+            body.classList.add("light-mode");
+            body.classList.remove("dark-mode");
+            body.style.backgroundColor = "#ffffff"; // Light mode background
+            body.style.color = "#000000"; // Light mode text color
+            toggleModeButton.textContent = "Dark Mode :D";
+            advancedInputs.forEach(input => {
+                input.style.color = "#000000"; // Text inside text boxes
+            });
+            helpMessages.forEach(message => {
+                message.style.color = "#555"; // Help text
+            });
+            bottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background
+            bottomBox.style.color = "#333"; // Bottom box text color
+        }
+
+        // Toggle light/dark mode and save preference
+        toggleModeButton.addEventListener("click", () => {
+            const currentMode = localStorage.getItem("mode");
+
+            if (currentMode === "dark") {
+                body.classList.add("light-mode");
+                body.classList.remove("dark-mode");
+                body.style.backgroundColor = "#ffffff"; // Light mode background
+                body.style.color = "#000000"; // Light mode text color
+                toggleModeButton.textContent = "Dark Mode :D";
+                advancedInputs.forEach(input => {
+                    input.style.color = "#000000"; // Text inside text boxes
+                });
+                helpMessages.forEach(message => {
+                    message.style.color = "#555"; // Help text
+                });
+                bottomBox.style.backgroundColor = "#f1f1f1"; // Light mode bottom box background
+                bottomBox.style.color = "#333"; // Bottom box text color
+                localStorage.setItem("mode", "light");
+            } else {
+                body.classList.add("dark-mode");
+                body.classList.remove("light-mode");
+                body.style.backgroundColor = "#1c1b1b"; // Dark mode background
+                body.style.color = "#ffffff"; // Dark mode text color
+                toggleModeButton.textContent = "FlashBang >:)";
+                advancedInputs.forEach(input => {
+                    input.style.color = "#ffffff"; // Text inside text boxes
+                });
+                helpMessages.forEach(message => {
+                    message.style.color = "#ffffff"; // Help text
+                });
+                bottomBox.style.backgroundColor = "#2a2a2a"; // Slightly lighter than background
+                bottomBox.style.color = "#ffffff"; // Bottom box text color
+                localStorage.setItem("mode", "dark");
+            }
+        });
+    </script>
+</body>
+
+</html>
